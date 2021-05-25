@@ -1,0 +1,41 @@
+// css components
+
+.textbox {
+  min-width: 190px;
+  &__title {
+    @include text(40px, pb, 83px, $text-black-cl, uppercase);
+    letter-spacing: 2.8px;
+    position: relative;
+
+    @include phone {
+      font-size: 30px;
+      letter-spacing: 1px;
+    }
+
+    @include small-phone {
+      line-height: 1.6;
+    }
+  }
+
+  &__des {
+    @include text(16px, pr, 25px, $text-cl, none);
+    letter-spacing: 0.4px;
+    @include phone {
+      letter-spacing: 0;
+    }
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  @include phone {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

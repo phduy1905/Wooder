@@ -1,0 +1,202 @@
+// css header
+.hidden {
+  display: none;
+}
+
+.header {
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--heightHeader);
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  @include tablet {
+    --heightHeader: 60px;
+  }
+
+  .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__logo {
+    img {
+      @include tablet {
+        width: 150px;
+      }
+    }
+  }
+  &__menu {
+    @include mid;
+    height: 100%;
+    display: flex;
+    list-style-type: none;
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 30px;
+      a:link,
+      a:visited {
+        @include text($fz-text, pb, 22.5px, $white-cl, uppercase);
+        text-decoration: none;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include transition($t);
+        position: relative;
+      }
+
+      a:hover,
+      a.active {
+        color: $yellow-cl;
+      }
+
+      a::after {
+        content: "";
+        position: absolute;
+        width: 0px;
+        height: 5px;
+        left: 50%;
+        bottom: 0;
+        background-color: $yellow-cl;
+        transition: all 0.2s ease-in-out;
+      }
+
+      a:hover::after,
+      a.active::after {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__language {
+    height: 100%;
+    position: relative;
+    &-current {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      span {
+        @include text($fz-text, pb, 22.5px, $white-cl, uppercase);
+        margin-right: 6px;
+      }
+    }
+
+    &-options {
+      background-color: rgba(0, 0, 0, 0.6);
+
+      @include visible(0);
+      @include transition($t);
+      li {
+        a {
+          display: block;
+          color: $white-cl;
+          text-decoration: none;
+          font-family: pb;
+          padding: 10px 30px;
+        }
+
+        a:hover {
+          color: $yellow-cl;
+          @include transition($t);
+        }
+      }
+
+      &.active {
+        opacity: 1;
+        @include visible;
+      }
+    }
+  }
+
+  // &__language:hover {
+  //   .header__language-options {
+  //     @include visible;
+  //   }
+  // }
+
+  &__burger {
+    display: none;
+    width: 30px;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 40;
+    @include transition($t);
+    span {
+      position: relative;
+      height: 3px;
+      width: 30px;
+      background-color: $yellow-cl;
+      transition: transform 0.3s;
+      border-radius: 50px;
+    }
+
+    span::before,
+    span::after {
+      content: "";
+      height: 3px;
+      width: 30px;
+      background-color: $yellow-cl;
+      transition: transform 0.3s;
+      position: absolute;
+      border-radius: 50px;
+    }
+
+    span::before {
+      transform: translateY(-8px);
+    }
+
+    span::after {
+      transform: translateY(8px);
+    }
+
+    @include tablet {
+      display: flex;
+    }
+
+    &.clicked {
+      span {
+        background: transparent;
+      }
+
+      span::before {
+        transform: rotate(45deg);
+      }
+
+      span::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &.active {
+    background-color: $black-bg-cl;
+    transition: all 0.3s;
+  }
+}

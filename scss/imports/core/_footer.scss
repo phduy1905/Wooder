@@ -1,0 +1,36 @@
+// css footer
+footer {
+  background-color: $black-bg-cl;
+  padding: 30px 0;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    position: relative;
+
+    .copyright {
+      @include text(12px, pr, 20px, $text-gray-cl, none);
+      letter-spacing: 0.6px;
+    }
+    .footer__logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @include phone {
+        position: initial;
+        transform: initial;
+        margin: 20px 0;
+      }
+    }
+    .backtotop {
+      @include text(12px, 83px, pr, $text-gray-cl, uppercase);
+      text-decoration: none;
+    }
+
+    @include phone {
+      flex-direction: column;
+    }
+  }
+}

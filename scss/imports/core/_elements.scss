@@ -1,0 +1,180 @@
+// css button, title, icon, elements...
+img {
+  max-width: 100%;
+}
+
+.main-btn {
+  @include text(14px, pb, 58px, $white-cl, uppercase);
+  letter-spacing: 2.8px;
+  text-decoration: none;
+  padding: 1em 3.5em;
+  border: 1px solid $white-cl;
+  width: max-content;
+  margin: 0 auto;
+  @include slideBG($yellow-cl);
+
+  &:hover {
+    background-color: $yellow-cl;
+  }
+
+  @include phone {
+    padding: 1em 1.5em;
+  }
+}
+
+.sub-btn {
+  text-decoration: none;
+  @include text(14px, pb, 58px, $text-black-cl, uppercase);
+  letter-spacing: 2.8px;
+  position: relative;
+  cursor: pointer;
+  &::before {
+    @include line(40px, 3px, $yellow-cl);
+    left: 0;
+    bottom: -10px;
+  }
+
+  &:hover {
+    img {
+      @include transform(translateX(5px));
+      @include transition($t);
+    }
+  }
+}
+
+.totop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: $yellow-cl;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: all 0.2s;
+  pointer-events: none;
+  z-index: 20;
+
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(-1.5px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    @include transition($t);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+  }
+
+  &.active {
+    transition: all 0.2s;
+    opacity: 1;
+    pointer-events: unset;
+  }
+}
+
+.overlay {
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // display: none;
+  // width: 100%;
+  // height: 100%;
+  // background-color: rgba($black-bg-cl, 0.5);
+  // z-index: 300;
+  // cursor: pointer;
+  // justify-content: center;
+  // align-items: center;
+  // display: flex;
+
+  &,
+  &::before,
+  &::after {
+    position: fixed;
+    top: 0;
+    z-index: 300;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s linear;
+
+  &::before,
+  &::after {
+    left: 50%;
+    content: "";
+    width: 400%;
+    margin-left: -200%;
+    background: rgba(0, 0, 0, 0.45);
+    transform: skewX(-30deg) translateX(-100%);
+    transition: transform 0.3s linear 0.3s;
+  }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.active::before {
+    transform: skewX(-30deg) translateX(0);
+    transition: transform 0.3s linear;
+  }
+
+  &.active::after {
+    transform: skewX(-30deg) translateX(0);
+    transition: transform 0.3s linear 0.15s;
+  }
+}
+
+.video-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 338px;
+  position: relative;
+  border: 1px solid $yellow-cl;
+  border-radius: 5px;
+  z-index: 400;
+
+  @include phone {
+    margin: 0 30px;
+  }
+}
+.close-video-btn {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  @include transition($t);
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  svg {
+    fill: $text-black-cl;
+    height: 30px;
+    width: 30px;
+  }
+}

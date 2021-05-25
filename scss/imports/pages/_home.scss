@@ -1,0 +1,729 @@
+// CSS HOMEPAGE
+.slider {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  --fzTitle: 83px;
+
+  @include tablet {
+    height: 70vh;
+  }
+
+  @include phone {
+    height: 50vh;
+  }
+
+  &__item-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+    &-textbox {
+      @include mid;
+      z-index: 10;
+      text-align: center;
+    }
+
+    &-title {
+      @include text(83px, pb, --fzTitle, $yellow-cl, uppercase);
+      letter-spacing: 16.6px;
+      margin-bottom: 0.6em;
+    }
+
+    &-btn {
+    }
+
+    &-img {
+      @include midimg;
+    }
+
+    @include tablet {
+      &-title {
+        font-size: 60px;
+      }
+
+      &-btn {
+        font-size: 12px;
+      }
+    }
+
+    @include phone {
+      &-title {
+        font-size: 40px;
+      }
+
+      &-btn {
+        font-size: 10px;
+      }
+    }
+  }
+
+  &__bottom {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+
+    .container-fluid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__number {
+        font-size: 42px;
+        font-family: pb;
+        color: $yellow-cl;
+        display: flex;
+        align-items: center;
+        min-width: 120px;
+
+        @include tablet {
+          min-width: 110px;
+        }
+
+        @include phone {
+          min-width: 40px;
+        }
+
+        &::before {
+          content: "";
+          display: inline-block;
+          height: 4px;
+          width: 40px;
+          background-color: $yellow-cl;
+          margin-right: 15px;
+        }
+      }
+
+      &__dots {
+        margin-left: 17px;
+        li {
+          display: inline-block;
+          height: 10px;
+          width: 10px;
+          background-color: rgba($yellow-cl, 0.3);
+          @include br(50%);
+          cursor: pointer;
+          &:not(:last-child) {
+            margin-right: 13px;
+          }
+
+          &.active {
+            background-color: $yellow-cl;
+          }
+        }
+
+        @include phone {
+          margin-left: 12px;
+          li {
+            height: 5px;
+            width: 5px;
+            &:not(:last-child) {
+              margin-right: 7px;
+            }
+          }
+        }
+      }
+
+      @include phone {
+        &__number {
+          font-size: 30px;
+
+          &::before {
+            width: 25px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    .mouse {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      img:first-child {
+        margin-bottom: 12px;
+      }
+
+      img:last-child {
+        @include keyframes(topdown) {
+          0% {
+            @include transform(translateY(0px));
+            opacity: 0;
+            @include transition($t);
+          }
+
+          100% {
+            @include transform(translateY(20px));
+            opacity: 1;
+            @include transition($t);
+          }
+        }
+
+        @include animation(topdown 1s ease infinite);
+      }
+
+      @include phone {
+        display: none;
+      }
+    }
+
+    .controller {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__btn {
+        border: 1px solid $white-cl;
+        width: 65px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+          background-color: $yellow-cl;
+        }
+
+        &:last-child {
+          margin-left: -1px;
+        }
+      }
+
+      @include phone {
+        display: none;
+      }
+    }
+  }
+}
+
+.product {
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+
+    @include phone {
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+
+    .product__img {
+      overflow: hidden;
+      position: relative;
+      height: 330px;
+      width: 515px;
+
+      @include small-phone {
+        width: 100%;
+      }
+
+      img {
+        @include midimg;
+      }
+    }
+
+    .textbox {
+      flex: 1;
+
+      &--left {
+        padding-left: 90px;
+        margin-right: 70px;
+
+        @include small-phone {
+          width: 100%;
+          margin: 0 auto 30px auto;
+          text-align: center;
+        }
+
+        @include phone {
+          text-align: left;
+          margin-bottom: 30px;
+        }
+
+        .textbox__title {
+          &::before {
+            @include line(90px, 2px, $text-black-cl);
+            top: 50%;
+            left: -100px;
+
+            @include tablet {
+              display: none;
+            }
+          }
+        }
+        @include tablet {
+          padding-left: 0;
+        }
+      }
+
+      &--right {
+        padding-right: 90px;
+        margin-left: 70px;
+
+        @include small-phone {
+          width: 100%;
+          margin: 0 auto 30px auto;
+          text-align: center;
+        }
+        @include phone {
+          text-align: right;
+          margin-bottom: 30px;
+        }
+        .textbox__title {
+          &::before {
+            @include line(90px, 2px, $text-black-cl);
+            top: 50%;
+            right: -100px;
+
+            @include tablet {
+              display: none;
+            }
+          }
+        }
+        @include tablet {
+          padding-right: 0;
+        }
+      }
+    }
+
+    &:last-child {
+      flex-direction: row-reverse;
+      margin-bottom: 0;
+      @include phone {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.video {
+  padding-bottom: 90px;
+  .textbox {
+    margin-bottom: 50px;
+  }
+  .textbox__title {
+    margin-bottom: 50px;
+    position: relative;
+  }
+
+  .textbox__title::before {
+    @include line(40px, 4px, $yellow-cl);
+    bottom: -20px;
+    left: 50%;
+    @include transform(translateX(-50%));
+  }
+
+  .textbox__des {
+    max-width: 470px;
+    margin: 0 auto;
+  }
+  &__list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item {
+  }
+  &__thumbnail {
+    height: 200px;
+    width: 200px;
+    @include br(50%);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 60px;
+    cursor: pointer;
+    border: 10px solid #fff;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.06);
+  }
+
+  &__img {
+    @include midimg;
+  }
+
+  &__thumbnail:hover &__img {
+    transform: translate(-50%, -50%) scale(1.3);
+    @include transition($t);
+  }
+
+  &__play-btn {
+    @include mid();
+  }
+
+  &__title {
+    @include text(16px, pr, 22px, $text-black-cl, capitalize);
+    position: relative;
+
+    &::after {
+      @include line(20px, 3px, $yellow-cl);
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @include phone {
+    padding-bottom: 30px;
+    &__list {
+      flex-direction: column;
+    }
+
+    &__item {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.info {
+  background-image: url("../img/complexity.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 650px;
+  display: flex;
+  align-items: center;
+
+  .textbox {
+    max-width: 600px;
+    &__title {
+      color: $yellow-cl;
+      line-height: normal;
+      margin-bottom: 37px;
+    }
+
+    &__des {
+      color: $white-cl;
+      margin-bottom: 50px;
+    }
+
+    @include phone {
+      text-align: left;
+    }
+  }
+
+  img {
+    transform: translateY(5px);
+    margin-right: 13px;
+  }
+
+  @include tablet {
+    height: 500px;
+  }
+}
+
+.about {
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+
+    .textbox {
+      max-width: 360px;
+      padding-left: 70px;
+
+      @include tablet {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      &__title::before {
+        @include line(90px, 2px, $text-black-cl);
+        top: 50%;
+        transform: translateX(-100%);
+        left: -30px;
+
+        @include tablet {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include phone {
+    .container {
+      flex-direction: column;
+
+      .textbox {
+        margin-bottom: 30px;
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.gallery {
+  background-color: $black-bg-cl;
+  .container {
+    .textbox {
+      margin-bottom: 50px;
+      max-width: 450px;
+      @include phone {
+        margin-bottom: 20px;
+      }
+      &__title {
+        color: $white-cl;
+      }
+
+      &__des {
+        color: $white-cl;
+      }
+    }
+
+    .gallery__list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 10px;
+
+      @include phone {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 150px;
+      }
+    }
+
+    .gallery__item {
+      overflow: hidden;
+      .gallery__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        @include transform(scale(1));
+        @include transition(0.7s);
+        opacity: 0.7;
+      }
+      &--1 {
+        grid-row: 1;
+      }
+
+      &--3 {
+        grid-row: 1 / span 2;
+      }
+
+      &:hover {
+        cursor: pointer;
+        .gallery__img {
+          @include transform(scale(1.1));
+          opacity: 1;
+          @include transition(0.7s);
+        }
+      }
+    }
+  }
+}
+
+.news {
+  .textbox {
+    max-width: 450px;
+    margin-bottom: 50px;
+  }
+
+  &__item {
+    width: calc(100% / 3 - 15px);
+
+    @include phone {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__img {
+    margin-bottom: 60px;
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 70%;
+    position: relative;
+
+    img {
+      @include transform(scale(1));
+      @include transition($t);
+      @include midimg;
+      width: 100%;
+    }
+
+    @include phone {
+      margin-bottom: 30px;
+    }
+
+    &:hover {
+      img {
+        @include transform(translate(-50%, -50%) scale(1.1));
+        @include transition($t);
+      }
+    }
+  }
+
+  &__img:hover ~ &__textbox > &__title {
+    color: $yellow-cl;
+  }
+
+  &__textbox {
+    color: $text-black-cl;
+    position: relative;
+    &::before {
+      @include line(80px, 3px, $yellow-cl);
+      left: 0;
+      top: -30px;
+
+      @include phone {
+        top: -15px;
+      }
+    }
+  }
+
+  &__title {
+    @include overtext(2);
+    @include text(18px, pb, 24px, $text-black-cl, uppercase);
+    letter-spacing: 0.6px;
+    min-height: 50px;
+    text-decoration: none;
+
+    @include phone {
+      min-height: 30px;
+      @include overtext(1);
+    }
+
+    &:hover {
+      color: $yellow-cl;
+    }
+  }
+
+  &__des {
+    @include overtext(3);
+    @include text(15px, pr, 25px, $text-black-cl, none);
+    letter-spacing: 0.375px;
+
+    @include phone {
+      text-overflow: initial;
+      overflow: initial;
+    }
+  }
+
+  &__tabs {
+    &-container {
+      display: flex;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__tab {
+    font-size: 24px;
+    font-family: pb;
+    cursor: pointer;
+    @include transition($t);
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+
+    &--active {
+      color: $yellow-cl;
+    }
+
+    &:hover {
+      color: $yellow-cl;
+      opacity: 0.8;
+    }
+  }
+
+  &__list {
+    display: none;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &--active {
+      display: flex;
+    }
+
+    @include phone {
+      flex-direction: column;
+    }
+  }
+}
+
+.slideshow {
+  width: 100%;
+  padding-bottom: 90px;
+  display: flex;
+  justify-content: space-between;
+
+  @include phone {
+    padding-bottom: 30px;
+  }
+}
+
+.qna {
+  background: $black-bg-cl;
+  .textbox {
+    margin-bottom: 40px;
+    max-width: 550px;
+    &__title {
+      color: $yellow-cl;
+    }
+
+    &__des {
+      color: $white-cl;
+    }
+  }
+
+  .accordion {
+    background-color: #eee;
+    color: $text-black-cl;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 20px;
+    font-size: 18px;
+    @include transition($t);
+    cursor: pointer;
+  }
+
+  .accordion.active,
+  .accordion:hover {
+    background-color: rgb(190, 190, 190);
+  }
+
+  .panel {
+    padding: 0 20px;
+    background-color: $white-cl;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+
+    p {
+      padding: 20px;
+    }
+  }
+}
